@@ -1,0 +1,18 @@
+// 登录接口
+POST http://127.0.0.1:8000/loginUp
+content-type: application/json
+
+{
+    "name":"qcpd的",
+    "password":"123"
+}
+
+###
+// 注册接口
+POST http://127.0.0.1:8000/signUp
+content-type: application/json
+
+{
+    "name":"qcpd的aa",
+    "password":"123"
+}
