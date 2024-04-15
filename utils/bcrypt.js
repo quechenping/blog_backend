@@ -1,13 +1,14 @@
-const bcrypt = require("bcryptjs");
+import bcrypt from "bcryptjs";
+
 const salt = bcrypt.genSaltSync(10);
 
 //加密密码
-exports.bcryption = (e) => {
+export function bcryption(e) {
   const hash = bcrypt.hashSync(e, salt);
   return hash;
-};
+}
 
 // 解析密码
-exports.verification = (e, hash) => {
+export function verification(e, hash) {
   return bcrypt.compareSync(e, hash);
-};
+}

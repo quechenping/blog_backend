@@ -1,18 +1,61 @@
+// 测试
+GET http://127.0.0.1:8000
+content-type: application/json
+
+###
 // 登录接口
-POST http://127.0.0.1:8000/loginUp
+POST http://127.0.0.1:8000/login
 content-type: application/json
 
 {
-    "name":"qcpd的",
+    "name":"qcpd的aa1",
     "password":"123"
 }
 
 ###
 // 注册接口
-POST http://127.0.0.1:8000/signUp
+POST http://127.0.0.1:8000/register
 content-type: application/json
 
 {
-    "name":"qcpd的aa",
+    "name":"qcpd的aa1",
     "password":"123"
+}
+
+### 
+// 查询文章
+POST http://127.0.0.1:8000/blog/list
+content-type: application/json
+
+{
+}
+
+### 
+// 新增文章
+POST http://127.0.0.1:8000/blog/add
+content-type: application/json
+
+{
+    "title": "vue",
+    "content": "123222312" 
+}
+
+### 
+// 编辑文章
+POST http://127.0.0.1:8000/blog/put
+content-type: application/json
+
+{
+    "id":"661b69d15e886a0fb4f1a3b2",
+    "title":"react",
+    "content":"asd"
+}
+
+### 
+// 删除文章
+POST http://127.0.0.1:8000/blog/delete
+content-type: application/json
+
+{
+    "id":"661b650b072c76108c6ca205"
 }

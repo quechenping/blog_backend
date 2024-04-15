@@ -1,8 +1,8 @@
-exports.errCode = {
-  w409: {
-    errCode: 409,
-    message: "用户已存在",
-  },
+export const errCode = {
+  other: (message) => ({
+    errCode: 500,
+    message,
+  }),
   w200: {
     errCode: 200,
   },
@@ -10,9 +10,9 @@ exports.errCode = {
     errCode: 400,
     message: "密码错误",
   },
-  w404: {
-    errCode: 404,
-    message: "用户不存在",
+  w409: {
+    errCode: 409,
+    message: "用户已存在",
   },
   w500: {
     errCode: 500,

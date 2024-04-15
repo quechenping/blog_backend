@@ -1,8 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const router = require("./router/index");
-// require("./server/websocket");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import router from "./router/index.js";
 
 const port = 8000;
 const app = express();
@@ -17,7 +16,7 @@ app.use(cors());
 app.use("/", router);
 
 // 处理404地址
-app.use("*", function (req, res) {
+app.use("*", function (_req, res) {
   res.status(404);
   res.send("not Found");
 });

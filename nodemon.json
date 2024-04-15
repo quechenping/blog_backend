@@ -1,4 +1,4 @@
 {
-    "ext": "js html",
-    "ignore":["test/*",".git"]
+  "ext": "js html",
+  "ignore": ["test/*", ".git"]
 }

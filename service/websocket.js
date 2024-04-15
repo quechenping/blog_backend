@@ -1,4 +1,4 @@
-const Ws = require("ws");
+import Ws from "ws";
 
 const server = new Ws.Server({ port: 8001 });
 
@@ -28,4 +28,4 @@ server.on("connection", (ws) => {
   });
 });
 
-module.exports = server;
+export default server;
