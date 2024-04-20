@@ -22,6 +22,7 @@ app.use(
     algorithms: TOKEN_ALGORITHMS,
   }).unless({
     path: [
+      "/",
       "/login",
       "/signup",
       "/blog/list",
