@@ -1,4 +1,11 @@
-import { getBlogList, addBlog, putBlog, delBlog } from "../service/blog.js";
+import { errCode } from "../constant/index.js";
+import {
+  getBlogList,
+  getBlog,
+  addBlog,
+  putBlog,
+  delBlog,
+} from "../service/blog.js";
 import { built } from "../utils/built.js";
 
 const useBlog = (router) => {
@@ -13,6 +20,17 @@ const useBlog = (router) => {
     }
   });
 
+  // 获取单篇文章
+  router.get("/blog/:id", async (req, res) => {
+    const params = req.params;
+    const resp = await getBlog(params);
+    if (resp.errCode) {
+      res.send(built(resp));
+    } else {
+      res.send(built({ data: resp }));
+    }
+  });
+
   // 新增文章
   router.post("/blog/add", async (req, res) => {
     const params = req.body;
@@ -20,7 +38,7 @@ const useBlog = (router) => {
     if (resp.errCode) {
       res.send(built(resp));
     } else {
-      res.send(built({ data: resp }));
+      res.send(built(errCode.w200));
     }
   });
 

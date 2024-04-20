@@ -25,9 +25,20 @@ const blogSchema = new Schema(
     tag: {
       type: String,
     },
+    // 是否为草稿
+    isDrafts: {
+      type: Boolean,
+    },
+    createTime: {
+      type: Number,
+    },
+    updateTime: {
+      type: Number,
+    },
   },
   {
-    timestamps: true,
+    versionKey: false,
+    timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
   },
 );
 

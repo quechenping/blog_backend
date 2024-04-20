@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { DATA_BASE } from "../constant/config";
+import { DATA_BASE } from "../constant/config.js";
 
 mongoose.connect(DATA_BASE, {
   useNewUrlParser: true,

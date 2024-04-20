@@ -9,5 +9,5 @@ export const generateToken = (id) => {
 
 export const verifyToken = (token) => {
   const res = jwt.verify(token, TOKEN_KEY);
-  console.log(res);
+  return res;
 };

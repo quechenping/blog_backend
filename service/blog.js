@@ -30,17 +30,40 @@ export const getBlogList = async ({
       .sort(sortOptions)
       .skip(pageOptions) // 使用skip和limit进行分页
       .limit(pageSize)
-      .lean(); // 使用纯JSON输出
+      .lean()
+      .exec(); // 使用纯JSON输出
 
     const totalCount = await blogModel.countDocuments(queryOptions);
 
     return {
-      list: result,
+      list: result.map(({ _id, content, ...itm }) => ({
+        id: _id,
+        content: content.slice(0, 100).replace(/#|[\n]/g, ""),
+        ...itm,
+      })),
       total: totalCount,
     };
   } catch (error) {
-    console.error(error);
+    console.error("查询blog列表失败", error);
     return errCode.w500;
+  }
+};
+
+// 查询单篇文章
+export const getBlog = async ({ id }) => {
+  if (id) {
+    try {
+      const { _id, ...itm } = await blogModel
+        .findOne({ _id: id })
+        .lean()
+        .exec();
+      return { id: _id, ...itm };
+    } catch (error) {
+      console.error("查询单篇文章失败", error);
+      return errCode.other("该文章不存在");
+    }
+  } else {
+    return errCode.other("请输入文章id");
   }
 };
 
@@ -55,9 +78,10 @@ export const addBlog = async ({ title, content, tag }) => {
   }
 
   try {
-    return await blogModel.create({ title, content, tag });
+    await blogModel.create({ title, content, tag });
+    return errCode.w200;
   } catch (e) {
-    console.error("error", e);
+    console.error("新建文章失败", e);
     return errCode.other(e);
   }
 };
@@ -66,7 +90,13 @@ export const addBlog = async ({ title, content, tag }) => {
 export const putBlog = async ({ id, ...params }) => {
   // 身份验证和文章所有权验证应该在这里进行
   if (id) {
-    return await blogModel.findByIdAndUpdate(id, params, { new: true });
+    try {
+      await blogModel.findByIdAndUpdate(id, params, { new: true });
+      return errCode.w200;
+    } catch (error) {
+      console.error("更新文章失败", e);
+      return errCode.w500;
+    }
   } else {
     addBlog(params);
   }
@@ -77,8 +107,10 @@ export const delBlog = async ({ id }) => {
   // 身份验证和文章所有权验证应该在这里进行
   if (id) {
     try {
-      return await blogModel.findByIdAndRemove(id);
+      await blogModel.findByIdAndRemove(id);
+      return errCode.w200;
     } catch (error) {
+      console.error("删除文章失败", e);
       return errCode.w500;
     }
   } else {

@@ -23,12 +23,22 @@ content-type: application/json
 }
 
 ### 
-// 查询文章
+// 查询文章列表
 POST http://127.0.0.1:8000/blog/list
 content-type: application/json
 
 {
 }
+
+
+### 
+// 查询文章
+GET http://127.0.0.1:8000/blog/662337f8aba9770510019082
+content-type: application/json
+
+{
+}
+
 
 ### 
 // 新增文章
@@ -57,5 +67,5 @@ POST http://127.0.0.1:8000/blog/delete
 content-type: application/json
 
 {
-    "id":"661b650b072c76108c6ca205"
+    "id":"6623392ff3c0ad35ccc9a4d1"
 }

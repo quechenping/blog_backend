@@ -8,4 +8,7 @@ const TOKEN_KEY = "secretKey";
 // token过期时间
 const TOKEN_EXPIRE = "1h";
 
-export { DATA_BASE, TOKEN_KEY, TOKEN_EXPIRE };
+// token加密方式
+const TOKEN_ALGORITHMS = ["HS256"];
+
+export { DATA_BASE, TOKEN_KEY, TOKEN_EXPIRE, TOKEN_ALGORITHMS };
