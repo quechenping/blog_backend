@@ -27,6 +27,7 @@ app.use(
       "/signup",
       "/blog/list",
       "/blog/",
+      "/visit/get",
       { url: /^\/blog\/.*/, methods: ["GET"] },
     ],
   }),

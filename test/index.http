@@ -69,3 +69,12 @@ content-type: application/json
 {
     "id":"6623392ff3c0ad35ccc9a4d1"
 }
+
+### 
+// 查看浏览量
+POST http://127.0.0.1:8000/visit/get
+content-type: application/json
+
+{
+    "blogId":"test3"
+}
